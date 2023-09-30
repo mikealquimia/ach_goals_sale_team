@@ -7,18 +7,33 @@
       <field name="inherit_id" ref="sale.crm_team_salesteams_view_form"/>
       <field name="type">form</field>
       <field name="arch" type="xml">
-        <xpath expr="//field[@name='invoiced_target']" position="after">
-          <field name="quotation_target" attrs="{'invisible': [('use_invoices', '=', False)]}"/>
-          <field name="sale_target" attrs="{'invisible': [('use_invoices', '=', False)]}"/>
-          <field name="invoice_target" attrs="{'invisible': [('use_invoices', '=', False)]}"/>
-          <field name="payment_target" attrs="{'invisible': [('use_invoices', '=', False)]}"/>
-          <separator/>
-          <field name="quotations_amount" attrs="{'invisible': [('use_invoices', '=', False)]}"/>
-          <field name="sales_amount" attrs="{'invisible': [('use_invoices', '=', False)]}"/>
-          <field name="invoices_amount" attrs="{'invisible': [('use_invoices', '=', False)]}"/>
-          <field name="payments_amount" attrs="{'invisible': [('use_invoices', '=', False)]}"/>
-          
-        </xpath>
+        <xpath expr="//field[@name='invoiced_target']" position="replace">
+          <div attrs="{'invisible': [('use_invoices', '=', False)]}">
+            <group>
+              <field name="currency_id" invisible='1'/>
+              <label for="quotation_target"/>
+              <div class="o_row">
+                <field name="quotation_target" widget="monetary"/>
+                 / Now:<field name="quotations_amount" widget="monetary" decoration-danger="(quotations_amount/quotation_target)&lt;0.8 and (quotations_amount/quotation_target)&gt;=0" decoration-info="(quotations_amount/quotation_target)&lt;1 and (quotations_amount/quotation_target)&gt;=0.8" decoration-success="quotation_target&lt;=quotations_amount"/>
+              </div>
+              <label for="sale_target"/>
+              <div class="o_row">
+                <field name="sale_target"  widget="monetary"/>
+                 /Now:<field name="sales_amount"  widget="monetary" decoration-danger="(sales_amount/sale_target)&lt;0.8 and (sales_amount/sale_target)&gt;=0" decoration-info="(sales_amount/sale_target)&lt;1 and (sales_amount/sale_target)&gt;=0.8" decoration-success="sale_target&lt;=sales_amount"/>
+              </div>
+              <label for="invoice_target"/>
+              <div class="o_row">
+                <field name="invoice_target"  widget="monetary"/>
+                 /Now:<field name="invoices_amount"  widget="monetary" decoration-danger="(invoices_amount/invoice_target)&lt;0.8 and (invoices_amount/invoice_target)&gt;=0" decoration-info="(invoices_amount/invoice_target)&lt;1 and (invoices_amount/invoice_target)&gt;=0.8" decoration-success="invoice_target&lt;=invoices_amount"/>
+              </div>
+              <label for="payment_target"/>
+              <div class="o_row">
+                <field name="payment_target"  widget="monetary"/>
+                 /Now:<field name="payments_amount"  widget="monetary" decoration-danger="(payments_amount/payment_target)&lt;0.8 and (payments_amount/payment_target)&gt;=0" decoration-info="(payments_amount/payment_target)&lt;1 and (payments_amount/payment_target)&gt;=0.8" decoration-success="payment_target&lt;=payments_amount"/>
+              </div>
+            </group>
+          </div>
+          </xpath>
       </field>
     </record>
 
@@ -34,7 +49,7 @@
           <field name="invoice_target"/>
           <field name="payment_target"/>
         </xpath>
-        <xpath expr="//t[@groups='sales_team.group_sale_manager']" position="inside">
+        <xpath expr="//t[@groups='sales_team.group_sale_manager']" position="replace">
           <t t-if="record.use_invoices.raw_value &amp;&amp; record.quotation_target.raw_value" class="col-12 o_kanban_primary_bottom">
             <field name="quotations_amount" widget="progressbar" title="Quotations" options="{'current_value': 'quotations_amount', 'max_value': 'quotation_target'}"/>
           </t>
