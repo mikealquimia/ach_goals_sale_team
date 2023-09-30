@@ -11,7 +11,7 @@
     'support': 'developmentalchemygx@gmail.com',
     'category': 'Sales',
     'version': '0.1',
-    'price': 2.00,
+    'price': 3.00,
     'currency': 'USD',
     'depends': ['base',
                 'crm',
