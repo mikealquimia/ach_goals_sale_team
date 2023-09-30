@@ -12,6 +12,12 @@
           <field name="sale_target" attrs="{'invisible': [('use_invoices', '=', False)]}"/>
           <field name="invoice_target" attrs="{'invisible': [('use_invoices', '=', False)]}"/>
           <field name="payment_target" attrs="{'invisible': [('use_invoices', '=', False)]}"/>
+          <separator/>
+          <field name="quotations_amount" attrs="{'invisible': [('use_invoices', '=', False)]}"/>
+          <field name="sales_amount" attrs="{'invisible': [('use_invoices', '=', False)]}"/>
+          <field name="invoices_amount" attrs="{'invisible': [('use_invoices', '=', False)]}"/>
+          <field name="payments_amount" attrs="{'invisible': [('use_invoices', '=', False)]}"/>
+          
         </xpath>
       </field>
     </record>
@@ -30,16 +36,16 @@
         </xpath>
         <xpath expr="//t[@groups='sales_team.group_sale_manager']" position="inside">
           <t t-if="record.use_invoices.raw_value &amp;&amp; record.quotation_target.raw_value" class="col-12 o_kanban_primary_bottom">
-            <field name="quotations_amount" widget="progressbar" title="Quotations" options="{'current_value': 'quotations_amount', 'max_value': 'quotation_target', 'editable': true, 'edit_max_value': true, 'on_change': 'update_quotation_target'}"/>
+            <field name="quotations_amount" widget="progressbar" title="Quotations" options="{'current_value': 'quotations_amount', 'max_value': 'quotation_target'}"/>
           </t>
           <t t-if="record.use_invoices.raw_value &amp;&amp; record.sale_target.raw_value" class="col-12 o_kanban_primary_bottom">
-            <field name="sales_amount" widget="progressbar" title="Sales" options="{'current_value': 'sales_amount', 'max_value': 'sale_target', 'editable': true, 'edit_max_value': true, 'on_change': 'update_sales_amount'}"/>
+            <field name="sales_amount" widget="progressbar" title="Sales" options="{'current_value': 'sales_amount', 'max_value': 'sale_target'}"/>
           </t>
           <t t-if="record.use_invoices.raw_value &amp;&amp; record.invoice_target.raw_value" class="col-12 o_kanban_primary_bottom">
-            <field name="invoices_amount" widget="progressbar" title="Invoices" options="{'current_value': 'invoices_amount', 'max_value': 'invoice_target', 'editable': true, 'edit_max_value': true, 'on_change': 'update_invoices_amount'}"/>
+            <field name="invoices_amount" widget="progressbar" title="Invoices" options="{'current_value': 'invoices_amount', 'max_value': 'invoice_target'}"/>
           </t>
           <t t-if="record.use_invoices.raw_value &amp;&amp; record.payment_target.raw_value" class="col-12 o_kanban_primary_bottom">
-            <field name="payments_amount" widget="progressbar" title="Payments" options="{'current_value': 'payments_amount', 'max_value': 'payment_target', 'editable': true, 'edit_max_value': true, 'on_change': 'update_payments_amount'}"/>
+            <field name="payments_amount" widget="progressbar" title="Payments" options="{'current_value': 'payments_amount', 'max_value': 'payment_target'}"/>
           </t>
         </xpath>
       </field>

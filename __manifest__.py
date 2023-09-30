@@ -13,7 +13,12 @@
     'version': '0.1',
     'price': 2.00,
     'currency': 'USD',
-    'depends': ['base','crm','sale','sales_team'],
+    'depends': ['base',
+                'crm',
+                'sale',
+                'sales_team',
+                'sale_management',
+                'account'],
     'data': [
         'data/data.xml',
         'views/crm_team_views.xml',
