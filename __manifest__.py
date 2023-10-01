@@ -11,6 +11,7 @@
     'support': 'developmentalchemygx@gmail.com',
     'category': 'Sales',
     'version': '0.1',
+    'live_test_url': 'https://youtu.be/LThzRWMUd2c',
     'price': 3.00,
     'currency': 'USD',
     'depends': ['base',
