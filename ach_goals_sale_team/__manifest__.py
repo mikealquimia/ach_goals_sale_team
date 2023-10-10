@@ -24,5 +24,5 @@
         'data/data.xml',
         'views/crm_team_views.xml',
     ],
-    'images': ['static/description/banner.png'],
+    'images': ['static/description/banner.gif'],
 }
